@@ -1,0 +1,80 @@
+- name: "Check if zsh executable exists"
+  stat:
+    path: /usr/bin/zsh
+  register: zsh_stat
+  tags: &zsh_binary_tag
+    - zsh_binary
+
+- name: "install zsh if zsh not exists"
+  become: true
+  ansible.builtin.command:
+    cmd: "/usr/bin/pacman -S --needed --noconfirm zsh"
+  when: zsh_stat.stat.exists == False
+  tags: *zsh_binary_tag
+
+- name: "Change shell to zsh"
+  become: true
+  ansible.builtin.command:
+    cmd: "/usr/bin/usermod --shell /usr/bin/zsh {{ ansible_user }}"
+
+- name: "Change shell to root user"
+  become: true
+  ansible.builtin.command:
+    cmd: "/usr/bin/usermod --shell /usr/bin/zsh root"
+
+- name: "Clone Repo powerlevel10k"
+  git:
+    repo: "https://github.com/romkatv/powerlevel10k.git"
+    dest: "{{ lookup('env', 'HOME') }}/powerlevel10k"
+    clone: yes
+    depth: 1
+
+- name: "Clone Repo powerlevel10k for root user"
+  become: true
+  git:
+    repo: "https://github.com/romkatv/powerlevel10k.git"
+    dest: "/root/powerlevel10k"
+    clone: yes
+    depth: 1
+
+- name: "Config powerlevel10k for the actual user"
+  ansible.builtin.command:
+    cmd: "/usr/bin/mv {{ lookup('env', 'HOME') }}/Descargas/.dotfiles/.p10k.zsh {{ lookup('env', 'HOME') }}"
+
+- name: "Config powerlevel10k for the root user"
+  become: true
+  ansible.builtin.command:
+    cmd: "/usr/bin/mv {{ lookup('env', 'HOME') }}/Descargas/.dotfiles.p10k.zsh-root /root/.p10k.zsh"
+
+- name: "Install wget"
+  become: true
+  ansible.builtin.command:
+    cmd: "/usr/bin/pacman -S --needed --noconfirm curl wget"
+
+- name: "Create a directory /usr/share/zsh/plugins/zsh-sudo"
+  become: true
+  ansible.builtin.file:
+    path: /usr/share/zsh/plugins/zsh-sudo
+    state: directory
+
+- name: "Add sudo plugin to zsh"
+  become: true
+  ansible.builtin.command:
+    cmd: "/usr/bin/mv {{ lookup('env', 'HOME') }}/Descargas/.dotfiles/sudo.plugin.zsh /usr/share/zsh/plugins/zsh-sudo"
+
+- name: "Install zsh-autosuggestions and zsh-syntax-highlighting"
+  become: true
+  ansible.builtin.command:
+    cmd: "/usr/bin/pacman -S --needed --noconfirm zsh-autosuggestions zsh-syntax-highlighting"
+
+- name: "clone fzf repo"
+  git:
+    repo: "https://github.com/junegunn/fzf.git"
+    dest: "{{ lookup('env', 'HOME') }}/.fzf"
+    clone: yes
+    depth: 1
+
+- name: "Install fzf"
+  become: true
+  ansible.builtin.command:
+    cmd: "Y | {{ lookup('env', 'HOME') }}/.fzf/install"

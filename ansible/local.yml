@@ -1,0 +1,6 @@
+- hosts: localhost
+  tasks:
+    - include: tasks/pacman_update.yml
+    - include: tasks/clone_dotfiles.yml
+    - include: tasks/nvim-setup.yml
+    - include: tasks/zsh-setup.yml

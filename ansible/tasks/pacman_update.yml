@@ -1,0 +1,6 @@
+tasks:
+  - name: "Update pacman"
+    become: true
+    ansible.builtin.command:
+      cmd: "/usr/bin/pacman -Syyu --noconfirm --needed"
+

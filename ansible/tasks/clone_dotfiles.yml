@@ -1,0 +1,5 @@
+tasks:
+  - name: "Clone repo dotfiles"
+    git:
+      repo: "https://github.com/Doblux/.dotfiles"
+      dest: "{{ lookup('env', 'HOME') }}/Descargas/.dotfiles"
