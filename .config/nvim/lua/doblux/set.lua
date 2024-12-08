@@ -3,9 +3,9 @@ vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
-vim.opt.tabstop = 2 -- 2 espacios = 1 tab
-vim.opt.softtabstop = 2 -- 2 espacios = 1 tab en modo insertar
-vim.opt.shiftwidth = 2 -- cantidad de espacios para la indentacion al mover lineas de codigo
+vim.opt.tabstop = 4 -- 4 espacios = 1 tab
+vim.opt.softtabstop = 4 -- 4 espacios = 1 tab en modo insertar
+vim.opt.shiftwidth = 4 -- cantidad de espacios para la indentacion al mover lineas de codigo
 vim.opt.expandtab = true -- Cuando se presiona la tecla de tabulación, se insertarán 4 espacios en lugar de un solo tabulador.
 
 vim.opt.smartindent = true -- activa la indentación inteligente, el editor ajustará automaticamente la indentacion segun el contexto

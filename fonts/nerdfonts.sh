@@ -1,1 +1,0 @@
-sudo pacman -S --noconfirm --needed ttf-cascadia-code-nerd ttf-fantasque-nerd ttf-firacode-nerd ttf-hack-nerd ttf-iosevka-nerd ttf-iosevkaterm-nerd ttf-jetbrains-mono-nerd ttf-meslo-nerd ttf-monofur-nerd ttf-roboto-mono-nerd ttf-sourcecodepro-nerd ttf-ubuntu-mono-nerd ttf-ubuntu-nerd ttf-victor-mono-nerd

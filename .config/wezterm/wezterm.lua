@@ -10,8 +10,6 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.window_background_opacity = 0.9
-
 -- This is where you actually apply your config choices
 config.keys = {
   -- Turn off the default CMD-m Hide action, allowing CMD-m to
@@ -71,7 +69,7 @@ config.keys = {
 -- Set background to same color as neovim
 --config.colors = {}
 --config.colors.background = '#111111'
-config.color_scheme = 'GruvboxDarkHard'
+config.color_scheme = 'Github Dark'
 
 config.font = wezterm.font_with_fallback {
   'IosevkaTerm Nerd Font',
